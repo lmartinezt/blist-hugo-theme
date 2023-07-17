@@ -4,6 +4,12 @@
   {{ else }}
     {{ .date.Format "02" }}. {{ substr (i18n (.date.Format "January")) 0 3 }} {{ .date.Format "06"}}
   {{ end }}
+{{else if (eq "es" .language.Lang)}}
+  {{ if eq "long" .format }}
+    {{ .date.Format "02" }} de {{ i18n (.date.Format "January")}} de {{ .date.Format "2006"}}
+  {{ else }}
+    {{ .date.Format "02" }} de {{ substr (i18n (.date.Format "January")) 0 3 }} {{ .date.Format "06"}}
+  {{ end }}
 {{ else }}
   {{ if eq "long" .format }}
     {{ .date.Format "January 2, 2006" }}
