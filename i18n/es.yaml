@@ -2,23 +2,23 @@
 - id: postedOnDate
   translation: "Escrito el {{ . }}"
 - id: lastModified
-  translation: "(Dernière modification le {{ . }})"
+  translation: "Actualizado el {{ . }}"
 - id: translationsLabel
-  translation: "Autres langues: "
+  translation: "Otros lenguajes: "
 - id: translationsSeparator
   translation: ", "
 - id: readMore
   translation: "Leer más"
 - id: morePosts
-  translation: "Más artículos"
+  translation: "Más publicaciones"
 - id: olderPosts
-  translation: "Artículos antiguos"
+  translation: "Publicaciones antiguas"
 - id: newerPosts
-  translation: "Artículos recientes"
+  translation: "Publicaciones recientes"
 - id: previousPost
-  translation: "Artículos anteriores"
+  translation: "Publicaciones anteriores"
 - id: nextPost
-  translation: "Artículos siguientes"
+  translation: "Publicaciones siguientes"
 - id: readTime
   translation: "minutos"
 - id: words
@@ -52,7 +52,7 @@
 
 # 404 page
 - id: pageNotFound
-  translation: "Whoops, cette page n'existe pas. Circulez. (404 error)"
+  translation: "Whoops, esta página no existe. (404 error)"
 
 # Footer
 - id: poweredBy # Accepts HTML
@@ -88,10 +88,10 @@
 
 # Delayed Disqus
 - id: show
-  translation: "Voir"
+  translation: "Ver"
 - id: comments
-  translation: "commentaires" 
+  translation: "Comentarios" 
 
 # Related posts
 - id: seeAlso
-  translation: "Voir aussi"
+  translation: "Ver también"
