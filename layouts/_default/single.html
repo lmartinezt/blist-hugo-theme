@@ -4,7 +4,7 @@
 
   {{ if (and .Params.thumbnail (not (or .Site.Params.hidePageThumbnail .Params.hidePageThumbnail)) ) }}
   <div class="relative max-w-5xl mx-auto px-4">
-    <img src="{{ .Params.thumbnail }}" class="rounded-lg shadow-sm w-full object-contain" />
+    <img src="{{ .Params.thumbnail }}" alt="{{ .Title }}" class="rounded-lg shadow-sm w-full object-contain" />
   </div>
   {{ end }}
 
