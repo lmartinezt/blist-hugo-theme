@@ -1,7 +1,8 @@
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-
+  <meta name="viewport" content="width=device-width, initial-scale=1" />{{ if (or (eq .Kind "taxonomy") (eq .Kind "section") (eq .Kind "term")) }}
+  <meta name="robots" content="noindex" /> 
+  {{ end }}
   <link rel="icon" href="{{ if (isset .Site.Params "favicon") }}{{ .Site.Params.favicon }}{{ else }}/favicon.ico{{ end }}">
 
   <title>
