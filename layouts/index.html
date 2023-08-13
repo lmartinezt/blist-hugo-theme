@@ -1,13 +1,22 @@
 {{ define "main" }}
   {{- partial "intro.html" . -}}
+  {{if .Site.Params.enableShareButtons}}
+    <a href="https://api.whatsapp.com/send?text=Visita%20tu%20casa%20dom&oacute;tica%20en%20https://tucasadomotica.net">Whatsapp</a>
+    <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//tucasadomotica.net">Facebook</a>
+    <a href="https://twitter.com/intent/tweet?text=Visita%20el%20sitio%20tu%20casa%20dom%C3%B3tica.%20https%3A//tucasadomotica.net">Twitter</a>
+  {{end}}
   {{if .Content}}
     <article class="prose lg:prose-lg mx-auto my-8 dark:prose-dark text-justify p-2 gap-1">
     {{ .Content }}
     </article>
   {{end}}
-  {{ $frontBundle := .Site.Params.frontBundle | default "blog" }}
+  {{if .Site.Params.articulosIndex }}
   <div class="container p-6 mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-8">
-    {{ range first 6 (where .Site.RegularPages.ByDate.Reverse "Type" $frontBundle)  }}
+    <h2 class="text-2xl font-bold mb-2 p-2 gap-1"> {{.Site.Params.articulosIndex }}</h2>
+  </div>
+  {{end}}{{ $frontBundle := .Site.Params.frontBundle | default "blog" }}
+  <div class="container p-6 mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-8">
+    {{ range first 6 (where (.Site.RegularPages.ByParam "rating") "Type" $frontBundle)  }}
       {{- partial "blog-card.html" . -}}
     {{ end }}
   </div>
@@ -21,6 +30,22 @@
     </a>
   </div>
   {{ end }}
-
+  {{if .Site.Taxonomies.marcas}}
+  <div class="container p-6 mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-8">
+    <h2 class="text-2xl font-bold mb-2 p-2 gap-1">Marcas de domótica</h2>
+  </div>
+  
+  <div class="container p-6 mx-auto grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 lg:gap-8">
+    {{ range .Site.Taxonomies.marcas }}
+    <div class="p-2">
+      <a href="{{ .Page.Permalink }}">
+        <div class="relative">
+          <img src="{{ lower .Page.Title }}-logo.webp" alt="{{ .Page.Title }}" class="rounded-lg shadow-sm w-full h-auto object-cover" />
+        </div>
+      </a>
+    </div>
+    {{ end }}
+  </div>
+  {{end}}
   {{- partial "social.html" . -}}
 {{ end }}
