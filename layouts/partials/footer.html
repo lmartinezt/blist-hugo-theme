@@ -38,6 +38,31 @@
 </script>
 {{ end }}
 
+{{ range .Site.Menus.main }}
+{{if .HasChildren}}
+<script>
+    const {{ lower .Name | safeJS }}MenuButton = document.querySelector('.menu-{{ lower .Name }}');
+    const {{ lower .Name | safeJS }}Dropdown = document.querySelector('.menu-{{ lower .Name }}-dropdown');
+    {{ lower .Name | safeJS }}MenuButton.addEventListener('click', (evt) => {
+      evt.preventDefault()
+      if ({{ lower .Name | safeJS }}Dropdown.classList.contains('hidden')) {
+        {{ lower .Name | safeJS }}Dropdown.classList.remove('hidden')
+        {{ lower .Name | safeJS }}Dropdown.classList.add('flex')
+      } else {
+        {{ lower .Name | safeJS }}Dropdown.classList.add('hidden');
+        {{ lower .Name | safeJS }}Dropdown.classList.remove('flex');
+      };
+      var {{ lower .Name | safeJS }}OtrosDropdown = document.querySelectorAll('.menu-dropdown.flex:not(.menu-{{ lower .Name }}-dropdown)');
+      for (var i = 0; i < {{ lower .Name | safeJS }}OtrosDropdown.length; i++) {
+        {{ lower .Name | safeJS }}OtrosDropdown[i].classList.add('hidden');
+        {{ lower .Name | safeJS }}OtrosDropdown[i].classList.remove('flex');
+      };
+
+    })
+  </script>
+{{end}}
+{{end}}
+
 {{ if .Site.Params.darkModeToggle }}
 <script>
   // On page load or when changing themes
