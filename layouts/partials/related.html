@@ -3,7 +3,7 @@
 <div class="container px-20 p-6 mx-auto grid grid-cols-1 gap-4">
     <h2 class="text-2xl font-bold mb-2 p-2 gap-1">También te podría interesar</h2>
   </div>
-    <div class="container px-20 py-6 mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-8">
+    <div class="container p-6 mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-8">
     {{ range . }}
       {{- partial "blog-card.html" . -}}
     {{ end }}
