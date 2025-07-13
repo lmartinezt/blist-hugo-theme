@@ -61,11 +61,14 @@
 
     {{ .Content }}
   </article>
+  
+  {{- partial "comments.html" . -}}
+
   {{if (eq .Section "blog")}}
     {{- partial "related.html" . -}}
   {{end}}
 
-  {{- partial "comments.html" . -}}
+  
 
   {{- partial "social.html" . -}}
 

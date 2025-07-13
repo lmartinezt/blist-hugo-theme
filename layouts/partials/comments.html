@@ -1,7 +1,40 @@
 {{ if .Site.Params.comments.system }}
-<div class="px-2 mb-2">
+<div class="container p-6 mx-auto grid grid-cols-1 gap-4 lg:gap-8">
   {{ if eq .Site.Params.comments.system "disqus" }}
-  {{ template "_internal/disqus.html" . }}
+  {{ if .Site.Params.comments.disqusShortname }}<div id="disqus_thread"></div>
+<script type="application/javascript">
+    window.disqus_config = function () {
+      this.page.identifier = {{ .Page.RelPermalink | safeURL }};
+      this.page.url = {{ .Page.Permalink | safeURL  }};
+    };
+    (function () {
+      if (window.location.hostname == "localhost")
+                return;
+        // create a new observer, with a callback defined
+        let observer = new IntersectionObserver((e) => {
+          // e refers to the event fired when the element
+          // intersects
+          if (!e || !e[0] || !e[0].isIntersecting) {
+            // if the element doesn't intersect, return 
+              return
+          }
+          // if the element intersects, insert the disqus script
+          var d = document, s = d.createElement('script'); 
+          s.async = true
+          s.src = 'https://' + {{ .Site.Params.comments.disqusShortname }} + '.disqus.com/embed.js'
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s)
+          // we don't want to do this again if the script is already
+          // inserted, so disconnect the observer
+          observer.disconnect()
+        });
+
+        // start the observer on the disqus container element
+        observer.observe(document.getElementById('disqus_thread'))
+    })();
+</script> 
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>{{end}}
   {{ else if eq .Site.Params.comments.system "giscus" }}
   <script src="https://giscus.app/client.js"
     data-repo="{{ .Site.Params.comments.repo }}"
